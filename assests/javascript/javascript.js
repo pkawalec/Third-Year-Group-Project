@@ -273,7 +273,7 @@ function initializeListeners(){
        
     var numberOfHours = document.getElementById('numberOfHours');
     numberOfHours.addEventListener('change', hoursEntered, false);
-    startTime.addEventListener('keyup', hoursEntered, false);
+    numberOfHours.addEventListener('keyup', hoursEntered, false);
     
 
 //inner functions for event handling
@@ -371,8 +371,8 @@ function timeEntered(){
     //if match is found error will display - time already set
 
        document.getElementById('numberOfHours').disabled = false;
-    var hou = document.getElementById('numberOfHours').value;
-    if(hou){
+    var hourNo = document.getElementById('numberOfHours').value;
+    if(hourNo){
         hoursEntered();
     }
     
@@ -387,7 +387,6 @@ function hoursEntered(){
     var loopBreak = false;
     
     //check for out of range working hours limit - up to 19:00 
- 
 if((parseInt(times) + parseInt(hours)) <= 19){
     document.getElementById('invalidHours').innerHTML = "";
      //document.getElementById('scheduleSubmit').removeAttribute('disabled');
@@ -396,7 +395,7 @@ if((parseInt(times) + parseInt(hours)) <= 19){
     
     
     
-    //generate arrar of hours from user
+    //generate array of hours from user
     for(var k=0; k<hours; k++){
         listOfHours[k] = k + parseInt(times);     
     }
@@ -413,7 +412,7 @@ if((parseInt(times) + parseInt(hours)) <= 19){
     }
 }else{
     document.getElementById('invalidHours').innerHTML = "Working hours out of range.";
-    document.getElementById('confirmButton').style.display='none';//.setAttribute('disabled', true);
+    document.getElementById('confirmButton').style.display='none';
     document.getElementById('notWorkingButton2').style.display='block';
    }
 }
