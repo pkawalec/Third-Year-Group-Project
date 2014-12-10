@@ -159,27 +159,37 @@ checkPass(); return false;
 		    var firstLetter = studentNumber.charAt(0);
 			var numberLength = studentNumber.length;
 			var areTheyAllNumbers = studentNumber.substr(1, 8);
-			var testAreTheyAllNumbers = isNaN(areTheyAllNumbers)
+			var testAreTheyAllNumbers = isNaN(areTheyAllNumbers);
 			var h1 = document.getElementById('homeForm1').value;
 			var h2 = document.getElementById('homeForm2').value;
 			var h3 = document.getElementById('homeForm3').value;
 			var h4 = document.getElementById('homeForm4').value;
 			var h5 = document.getElementById('homeForm5').value;
+			var testArePhoneAllNumbers = isNaN(h5);
 			
 			if(pass1.value != "" && pass1.value == pass2.value && firstLetter == "R" && testAreTheyAllNumbers == false && numberLength == 9 
-			&& h1 != "" && h2 != "" && h3 != "" && h4 != "" && h5 != "")
+			&& h1 != "" && h2 != "" && h3 != "" && h4 != "" && h5 != "" && testArePhoneAllNumbers == false)
 			{
 				confirmButton.style.display = "block";
 				notWorkingButton.style.display = "none";
+				phoneNumberLabel.innerHTML = "";
+				homeForm5.style.backgroundColor = "#ffffff";
+			}
+			else if(testArePhoneAllNumbers == true)
+			{
+				phoneNumberLabel.innerHTML = "Please enter valid phone number"
+				confirmButton.style.display = "none";
+				notWorkingButton.style.display = "block";
+				homeForm5.style.backgroundColor = "#ff6666";
 			}
 			else
 			{
 				confirmButton.style.display = "none";
 				notWorkingButton.style.display = "block";
+				homeForm5.style.backgroundColor = "#ffffff";
+				phoneNumberLabel.innerHTML = "";
 			}
 		}
-
-
 
 
 
@@ -188,6 +198,7 @@ checkPass(); return false;
 
 //Mobile menu button
 
+
 $(document).ready(function() {
 
    $( "#mobileButton" ).click(function(){
@@ -195,6 +206,15 @@ $(document).ready(function() {
 		menuDisplay();
    
    });
+   
+   var menu = document.getElementById("leftProfile");
+   var width = $(document).width();
+   
+   if(width <= 640){
+   
+		menu.style.display = "none";
+		
+   }
    
 });
 
